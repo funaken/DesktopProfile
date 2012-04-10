@@ -1,0 +1,24 @@
+".vimperatorrc
+
+"h/l でタブ移動
+map h <C-p><Esc>
+map l <C-n><Esc>
+
+"j/kの移動量を5倍に
+map j 5<C-e>
+map k 5<C-y>
+
+"検索結果を強調表示
+set hlsearch
+
+" qmark go + ○ でアクセス
+qmark g http://www.google.com/
+qmark m http://mail.google.com/
+qmark c http://www.google.com/calendar/render
+
+"Gmail と Google Reader で使用するキーを設定
+autocmd LocationChange .* :fmapc
+autocmd LocationChange mail\\.google\\.com/mail :fmap j k n p o u e x s r a # [ ] z ? gi gs gt gd ga gc /
+autocmd LocationChange www\\.google\\.com/reader :fmap! -vkey j k n p m s t v A r S N P X O gh ga gs gt gu / ?
+autocmd LocationChange www\\.google\\.co\\.jp/reader :fmap! -vkey j k n p m s t v A r S N P X O gh ga gs gt gu / ?
+
