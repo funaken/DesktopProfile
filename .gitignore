@@ -1,0 +1,7 @@
+*.swp
+*.bak
+.viminfo
+history-command
+history-search
+local-marks
+quickmarks
