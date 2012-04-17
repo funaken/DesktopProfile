@@ -1,6 +1,7 @@
 *.swp
 *.bak
 .viminfo
+.netrwhist
 history-command
 history-search
 local-marks

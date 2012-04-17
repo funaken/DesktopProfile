@@ -7,8 +7,8 @@ setl autoindent                 " 自動インデント
 "smartindent より cindent の処理の方が厳密 
 setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,enum,ensure
 setl tabstop=4                  " タブ幅
-setl expandtab                  " タブ入力時にスペースで置換する
+setl noexpandtab                  " タブ入力時にスペースで置換する
 setl shiftwidth=4               " インデントの各段階に使われる空白の数
 setl softtabstop=4              " <Tab>, <BS>を使用して編集する際の<Tab>の対応する空白の数
-setl smarttab                   " 行頭で<Tab>を押した時に shiftwidth に対応して空白を挿入する
+setl nosmarttab                   " 行頭で<Tab>を押した時に shiftwidth に対応して空白を挿入する
 
