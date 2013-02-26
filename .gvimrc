@@ -1,7 +1,18 @@
-:set guifont=Migu\ 1M\ Regular:h16
-":set guifontwide=Migu\ 1M\ Regular:h14
+if filereadable(expand("~/.vimrc"))
+  source ~/.vimrc
+endif
+
+" set font style and size
+set guifont=Migu\ 1M\ Regular:h16
+set transparency=20
+
+" set columns
+set columns=130
+set lines=32
+
 " タブタイトルに番号を表示.
 set showtabline=2 " always show tabs in gvim, but not vim
+
 " set up tab labels with tab number, buffer name, number of windows
 function! GuiTabLabel()
   let label = ''
@@ -33,4 +44,10 @@ function! GuiTabLabel()
   let wincount = tabpagewinnr(v:lnum, '$')
   return label . '  [' . wincount . ']'
 endfunction
+
 set guitablabel=%{GuiTabLabel()}
+
+if filereadable(expand("~/.gvimrc_local"))
+  source ~/.gvimrc_local
+endif
+colorscheme railscasts

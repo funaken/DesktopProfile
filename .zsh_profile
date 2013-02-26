@@ -1,0 +1,10 @@
+#!/bin/zsh
+
+PATH=/opt/local/bin:/opt/local/sbin/:$PATH:/sbin
+MANPATH=/opt/local/man:$MANPATH
+
+# Run local stuff, too.
+if [[ -f ~/.zsh_profile_local ]]; then
+  source ~/.zsh_profile_local
+fi
+
