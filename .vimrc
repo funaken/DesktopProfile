@@ -23,18 +23,16 @@
 "" 直前の選択範囲を再選択
 " gv
 
+if filereadable(expand("~/.vim/autosession.vim"))
+  source ~/.vim/autosession.vim
+endif
+
 if filereadable(expand("~/.vim/vundle.vim"))
   source ~/.vim/vundle.vim
 endif
 
 if filereadable(expand("~/.exrc"))
   source ~/.exrc
-endif
-if filereadable(expand("~/.vimrc_local"))
-  source ~/.vimrc_local
-endif
-if filereadable(expand("~/.vim/autosession.vim"))
-  source ~/.vim/autosession.vim
 endif
 
 syntax on
@@ -94,3 +92,8 @@ set number
 set ruler
 autocmd WinEnter * setlocal cursorline
 autocmd WinLeave * setlocal nocursorline
+
+if filereadable(expand("~/.vimrc_local"))
+  source ~/.vimrc_local
+endif
+

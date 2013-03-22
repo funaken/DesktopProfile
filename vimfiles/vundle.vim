@@ -1,7 +1,7 @@
 " Vundle
 set nocompatible
 filetype off
-set rtp+=~/.vim/vundle
+set rtp+=~/.vim/vundle/
 call vundle#rc()
 " Vundle本体
 Bundle 'gmarik/vundle'

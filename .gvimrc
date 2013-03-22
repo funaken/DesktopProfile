@@ -1,6 +1,3 @@
-if filereadable(expand("~/.vimrc"))
-  source ~/.vimrc
-endif
 
 " set font style and size
 set guifont=Migu\ 1M\ Regular:h16
