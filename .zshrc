@@ -21,6 +21,8 @@ colors
 
 # VCS settings
 autoload -Uz vcs_info
+zstyle ":vcs_info:git:*" formats "%c%u[%b]"
+zstyle ":vcs_info:git:*" actionformats "%c%u<%a>[%b]"
 precmd() {
     psvar=()
     LANG=en_US.UTF-8 vcs_info
