@@ -3,6 +3,8 @@ HISTFILE=$HOME/.zsh-history
 HISTSIZE=100000
 SAVEHIST=100000
 
+local BLUE=$'%{\e[1;34m%}'
+
 if [[ -f ~/.zsh_profile ]]; then
   source ~/.zsh_profile
 fi
@@ -38,7 +40,7 @@ case ${UID} in
   ;;
 *)
   #PROMPT="[%n@%m] %{${fg[blue]}%}#%{${reset_color}%} "
-  PROMPT="%{%B%}%{${fg[cyan]}%}%n@%m%{${reset_color}%}%{%b%}:%{${fg[blue]}%}%~%{${reset_color}%}%{${fg[red]}%}%1v%{${reset_color}%}$ "
+  PROMPT="%{%B%}%{${fg[cyan]}%}%n@%m%{${reset_color}%}%{%b%}:%{${BLUE}%}%~%{${reset_color}%}%{${fg[red]}%}%1v%{${reset_color}%}$ "
   PROMPT2="%B%{${fg[blue]}%}%_#%{${reset_color}%}%b "
   SPROMPT="%B%{${fg[blue]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b "
   RPROMPT=""
