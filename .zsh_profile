@@ -3,6 +3,11 @@
 PATH=/opt/local/bin:/opt/local/sbin/:$PATH:/sbin
 MANPATH=/opt/local/man:$MANPATH
 
+if type "rbenv" > /dev/null; then
+  PATH=$HOME/.rbenv/bin:$PATH
+  eval "$(rbenv init - zsh)"
+fi
+
 # Run local stuff, too.
 if [[ -f ~/.zsh_profile_local ]]; then
   source ~/.zsh_profile_local
