@@ -1,3 +1,4 @@
+scriptencoding utf-8
 "" メモ：
 "" タブ・スペース表示
 " :set list
@@ -54,7 +55,7 @@ set tabstop=4
 " Auto change current directory
 set autochdir
 " Minimum Scroll when cursor moves out screen
-set sj=3
+set scrolljump=3
 " Scroll at <C-d> <C-u>
 set scr=10
 

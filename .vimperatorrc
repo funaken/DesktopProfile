@@ -18,7 +18,7 @@ qmark c http://www.google.com/calendar/render
 
 "Gmail と Google Reader で使用するキーを設定
 autocmd LocationChange .* :fmapc
-autocmd LocationChange mail\\.google\\.com/mail :fmap I j k n p o u e x s r a # [ ] z ? gi gs gt gd ga gc /
+autocmd LocationChange mail\\.google\\.com/mail :fmap -depth 5 I j k n p o u e x s r a # [ ] z ? gi gs gt gd ga gc /
 autocmd LocationChange www\\.google\\.com/reader :fmap! -vkey j k n p m s t v A r S N P X O gh ga gs gt gu / ?
 autocmd LocationChange www\\.google\\.co\\.jp/reader :fmap! -vkey j k n p m s t v A r S N P X O gh ga gs gt gu / ?
 

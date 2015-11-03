@@ -43,7 +43,7 @@ case ${UID} in
   PROMPT="%{%B%}%{${fg[cyan]}%}%n@%m%{${reset_color}%}%{%b%}:%{${BLUE}%}%~%{${reset_color}%}%{${fg[red]}%}%1v%{${reset_color}%}$ "
   PROMPT2="%B%{${fg[blue]}%}%_#%{${reset_color}%}%b "
   SPROMPT="%B%{${fg[blue]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b "
-  RPROMPT=""
+  RPROMPT="%T"
   ;;
 esac
 
@@ -132,6 +132,9 @@ setopt auto_param_slash
 ## スペルチェック
 setopt correct
 
+# ^S as history-incremental-search-forward
+stty stop undef
+
 ## エイリアス
 setopt complete_aliases
 
@@ -148,6 +151,10 @@ alias lf="ls -F"
 alias ll="ls -la"
 alias du="du -h"
 alias df="df -h"
+
+alias rm="rm -i"
+alias mv="mv -i"
+alias cp="cp -i"
 
 alias emacs="open /Applications/Emacs.app"
 
@@ -186,3 +193,6 @@ function wikipedia
 {
     ${TEXT_BROWSER} http://ja.wikipedia.org/wiki/`_space2p20 $@`
 }
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
