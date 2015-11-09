@@ -194,5 +194,9 @@ function wikipedia
     ${TEXT_BROWSER} http://ja.wikipedia.org/wiki/`_space2p20 $@`
 }
 
+# for golang
+export GOPATH=$HOME/.go
+export PATH="$GOPATH/bin:$PATH"
+
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
