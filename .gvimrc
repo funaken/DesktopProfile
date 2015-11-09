@@ -1,6 +1,9 @@
 
 " set font style and size
-set guifont=Migu\ 1M\ Regular:h16
+silent! set guifont=Migu\ 1M\ Regular:h16
+if &guifont != 'Migu 1M Regular:h16'
+    set guifont=MS-Gothic:h16
+endif
 set transparency=20
 
 " set columns
