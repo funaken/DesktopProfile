@@ -13,10 +13,10 @@ fi
 export URL=$1
 
 read -p "Are you sure to apply patch? " -n 1 -r
-echo    # (optional) move to a new line
+echo # move to a new line
 if [[ ! $REPLY =~ ^[Yy]$ ]]
 then
-    exit 1
+  exit 1
 fi
 
 curl ${URL} -o tmp.diff
