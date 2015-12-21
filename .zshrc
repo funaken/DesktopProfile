@@ -156,7 +156,10 @@ alias rm="rm -i"
 alias mv="mv -i"
 alias cp="cp -i"
 
+alias tree="pwd;find . | sort | sed '1d;s/^\.//;s/\/\([^/]*\)$/|--\1/;s/\/[^/|]*/| /g'"
+
 alias emacs="open /Applications/Emacs.app"
+alias macvim="open /Applications/MacVim.app"
 
 ## 最後のスラッシュを自動的に削除しない
 setopt noautoremoveslash
