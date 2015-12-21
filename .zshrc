@@ -26,9 +26,9 @@ autoload -Uz vcs_info
 zstyle ":vcs_info:git:*" formats "%c%u[%b]"
 zstyle ":vcs_info:git:*" actionformats "%c%u<%a>[%b]"
 precmd() {
-    psvar=()
-    LANG=en_US.UTF-8 vcs_info
-    psvar[1]=$vcs_info_msg_0_
+  psvar=()
+  LANG=en_US.UTF-8 vcs_info
+  psvar[1]=$vcs_info_msg_0_
 }
 
 case ${UID} in
@@ -139,12 +139,12 @@ stty stop undef
 setopt complete_aliases
 
 case "${OSTYPE}" in
-freebsd*|darwin*)
-alias ls="ls -G -w"
-;;
-linux*)
-alias ls="ls --color"
-;;
+  freebsd*|darwin*)
+    alias ls="ls -G -w"
+    ;;
+  linux*)
+    alias ls="ls --color"
+    ;;
 esac
 alias la="ls -a"
 alias lf="ls -F"
@@ -158,9 +158,6 @@ alias cp="cp -i"
 
 alias tree="pwd;find . | sort | sed '1d;s/^\.//;s/\/\([^/]*\)$/|--\1/;s/\/[^/|]*/| /g'"
 
-alias emacs="open /Applications/Emacs.app"
-alias macvim="open /Applications/MacVim.app"
-
 ## 最後のスラッシュを自動的に削除しない
 setopt noautoremoveslash
 
@@ -169,37 +166,46 @@ export TEXT_BROWSER=w3m
 
 function _space2p20
 {
-    echo $@ |sed -e "s/ /%20/g"
+  echo $@ |sed -e "s/ /%20/g"
 }
 
 function _space2plus
 {
-    echo $@ | sed -e "s/ /+/g"
+  echo $@ | sed -e "s/ /+/g"
 }
 
 function google
 {
-    ${TEXT_BROWSER} "http://www.google.co.jp/search?q="`_space2plus $@`"&hl=ja"
+  ${TEXT_BROWSER} "http://www.google.co.jp/search?q="`_space2plus $@`"&hl=ja"
 }
 
 function ydic
 {
-    ${TEXT_BROWSER} "http://dic.yahoo.co.jp/dsearch?enc=UTF-8&p="`_space2plus $@`"&stype=0&dtype=2"
+  ${TEXT_BROWSER} "http://dic.yahoo.co.jp/dsearch?enc=UTF-8&p="`_space2plus $@`"&stype=0&dtype=2"
 }
 
 function technorati
 {
-    ${TEXT_BROWSER} http://www.technorati.com/search/`_space2p20 $@`"?language=ja"
+  ${TEXT_BROWSER} http://www.technorati.com/search/`_space2p20 $@`"?language=ja"
 }
 
 function wikipedia
 {
-    ${TEXT_BROWSER} http://ja.wikipedia.org/wiki/`_space2p20 $@`
+  ${TEXT_BROWSER} http://ja.wikipedia.org/wiki/`_space2p20 $@`
 }
 
 # for golang
 export GOPATH=$HOME/.go
 export PATH="$GOPATH/bin:$PATH"
+
+case ${OSTYPE} in
+  darwin*)
+    # For Mac settings
+    if [[ -f ~/.zshrc.mac ]]; then
+      source ~/.zshrc.mac
+    fi
+    ;;
+esac
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
