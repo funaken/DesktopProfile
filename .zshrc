@@ -201,8 +201,8 @@ export PATH="$GOPATH/bin:$PATH"
 case ${OSTYPE} in
   darwin*)
     # For Mac settings
-    if [[ -f ~/.zshrc.mac ]]; then
-      source ~/.zshrc.mac
+    if [[ -f ~/.zshrc.osx ]]; then
+      source ~/.zshrc.osx
     fi
     ;;
 esac
