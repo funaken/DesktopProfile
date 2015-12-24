@@ -1,4 +1,4 @@
 
 alias emacs="open /Applications/Emacs.app"
-alias macvim="open /Applications/MacVim.app"
+alias macvim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/mvim --remote-tab-silent "$@"'
 
