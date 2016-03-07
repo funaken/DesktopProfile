@@ -13,4 +13,5 @@ git config --global alias.fet 'fetch'
 git config --global alias.sta 'stash --include-untracked'
 git config --global alias.stap 'stash pop'
 git config --global alias.rom 'rebase origin/master'
+git config --global alias.set-track 'branch -u'
 
