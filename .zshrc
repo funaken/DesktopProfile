@@ -17,11 +17,9 @@ bindkey -e # emacs
 autoload -U compinit
 
 # Platform-specific
-if [[ "$(expr substr $(uname -s) 1 10)" == 'MINGW32_NT' ]]; then
-  # Cygwin
-  compinit -u
-elif [[ "$(expr substr $(uname -s) 1 9)" == 'CYGWIN_NT' ]]; then
-  # MobaXTerm
+OS_NAME=`uname -s`
+if [[ "${OS_NAME}" =~ ^(MINGW32_NT|CYGWIN_NT) ]]; then
+  # Windows
   compinit -u
 else
   compinit
