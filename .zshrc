@@ -15,7 +15,19 @@ bindkey -e # emacs
 
 ## 補完機能の強化
 autoload -U compinit
-compinit
+
+# Platform-specific
+if [[ "$(expr substr $(uname -s) 1 10)" == 'MINGW32_NT' ]]; then
+  # Cygwin
+  compinit -u
+elif [[ "$(expr substr $(uname -s) 1 9)" == 'CYGWIN_NT' ]]; then
+  # MobaXTerm
+  compinit -u
+else
+  compinit
+  ## コアダンプサイズを制限
+  limit coredumpsize 102400
+fi
 
 ## プロンプトの設定
 autoload colors
@@ -46,9 +58,6 @@ case ${UID} in
   RPROMPT="%T"
   ;;
 esac
-
-## コアダンプサイズを制限
-limit coredumpsize 102400
 
 ## 出力の文字列末尾に改行コードが無い場合でも表示
 unsetopt promptcr
