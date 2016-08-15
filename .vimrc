@@ -28,8 +28,8 @@ if filereadable(expand("~/.vim/autosession.vim"))
   source ~/.vim/autosession.vim
 endif
 
-if filereadable(expand("~/.vim/neobundle.vim"))
-  source ~/.vim/neobundle.vim
+if filereadable(expand("~/.vim/dein.vim"))
+  source ~/.vim/dein.vim
 endif
 
 if filereadable(expand("~/.exrc"))
