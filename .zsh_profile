@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-PATH=/opt/local/bin:/opt/local/sbin/:$PATH:/sbin:$HOME/bin
+PATH=/opt/local/bin:/opt/local/sbin/:$PATH:/sbin:$HOME/bin:$HOME/.local/bin
 MANPATH=/opt/local/man:$MANPATH
 
 if type "rbenv" > /dev/null; then
