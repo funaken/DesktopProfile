@@ -14,4 +14,6 @@ git config --global alias.pushf 'push --force-with-lease'
 git config --global alias.sta 'stash --include-untracked'
 git config --global alias.stap 'stash pop'
 git config --global alias.set-track 'branch -u'
+git config --global alias.sw 'switch'
+git config --global alias.rmb 'branch -d'
 
