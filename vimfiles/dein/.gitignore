@@ -1,4 +1,6 @@
 /.dein/
+/.cache/
+/repos/
 /rollbacks/
 /temp/
 merged
