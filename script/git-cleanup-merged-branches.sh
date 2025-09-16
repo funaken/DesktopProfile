@@ -9,7 +9,7 @@ set -e  # Exit on error
 # Function to display help
 show_help() {
   echo "Usage: $0 [options]"
-  echo "Lists all branches merged into the current branch and offers to delete them."
+  echo "Lists all branches and their merge status, then offers to delete merged branches."
   echo ""
   echo "Options:"
   echo "  -h, --help      Display this help information"
@@ -21,7 +21,7 @@ show_help() {
   echo "  - CONTENT STATUS: Whether branch content is already in current branch"
   echo ""
   echo "Example:"
-  echo "  $0              # List merged branches and ask for confirmation to delete"
+  echo "  $0              # List all branches with merge status and ask for confirmation to delete merged ones"
   exit 0
 }
 
@@ -73,7 +73,7 @@ main() {
   # Get current branch
   local current_branch=$(git branch --show-current)
 
-  echo "Listing branches merged into current branch '$current_branch':"
+  echo "Listing all branches and their merge status with current branch '$current_branch':"
   echo "--------------------------------------------------------------------------------------------"
   printf "%-25s | %-25s | %-25s | %s\n" "BRANCH NAME" "COMMIT COUNT" "UNIQUE CONTENT" "CONTENT STATUS"
   echo "--------------------------------------------------------------------------------------------"
@@ -86,38 +86,34 @@ main() {
     exit 0
   fi
 
-  # Find merged branches
-  local merged_branches=""
-
+  # Process all branches (both merged and unmerged)
   echo "$all_branches" | while read branch; do
     # Skip empty lines
     if [ -z "$branch" ]; then
       continue
     fi
 
-    # Check if branch is merged using git cherry
-    if is_branch_merged "$branch" "$current_branch"; then
-      # Count total commits not in current branch
-      local total_commits=$(git log "$current_branch..$branch" --oneline | wc -l | tr -d '[:space:]')
+    # Count total commits not in current branch
+    local total_commits=$(git log "$current_branch..$branch" --oneline | wc -l | tr -d '[:space:]')
 
-      # Use git cherry to check unique commits not in current branch
-      local cherry_output=$(git cherry "$current_branch" "$branch")
-      local unique_commits=$(echo "$cherry_output" | grep -c "^+" || true)
+    # Use git cherry to check unique commits not in current branch
+    local cherry_output=$(git cherry "$current_branch" "$branch")
+    local unique_commits=$(echo "$cherry_output" | grep -c "^+" || true)
 
-      # Determine content status - for merged branches this should always be "All content already in current branch"
-      content_status="✅ All content already in current branch"
-
-      # Print branch info
-      printf "%-25s | %-25s | %-25s | %s\n" "$branch" "$total_commits commits" "$unique_commits commits" "$content_status"
-
-      # Add to merged branches list
-      if [ -z "$merged_branches" ]; then
-        merged_branches="$branch"
-      else
-        merged_branches="$merged_branches
-$branch"
-      fi
+    # Determine content status
+    if [ "$total_commits" -eq 0 ]; then
+      # Should never happen for branches from all_branches, but included for completeness
+      content_status="⚠️ Branch appears merged (no commits)"
+    elif [ "$unique_commits" -eq 0 ]; then
+      content_status="✅ All content already in current branch (MERGED)"
+    elif [ "$unique_commits" -lt "$total_commits" ]; then
+      content_status="⚠️ Partially in current branch (UNMERGED)"
+    else
+      content_status="❌ Not in current branch (UNMERGED)"
     fi
+
+    # Print branch info
+    printf "%-25s | %-25s | %-25s | %s\n" "$branch" "$total_commits commits" "$unique_commits commits" "$content_status"
   done
 
   # Store merged branches in a temp file to access outside the subshell
@@ -142,12 +138,10 @@ $branch"
 
   echo ""
   echo "Found $branch_count merged branch(es) that can be safely deleted."
+  echo "Note: Only merged branches (marked with 'MERGED') will be deleted."
 
 
   # Ask for confirmation
-  echo "$merged_branches" | while read branch; do
-    echo "  $branch"
-  done
   echo ""
   read -p "Delete all these merged branches? (Yes/y or No/n): " confirm
   if [[ "$confirm" != "Yes" && "$confirm" != "y" ]]; then
