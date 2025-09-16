@@ -9,7 +9,7 @@ git config --global alias.co checkout
 git config --global alias.st 'status'
 git config --global alias.br 'branch'
 git config --global alias.pul 'pull --rebase'
-git config --global alias.fet 'fetch'
+git config --global alias.fet 'fetch -p'
 git config --global alias.pushf 'push --force-with-lease'
 git config --global alias.sta 'stash --include-untracked'
 git config --global alias.stap 'stash pop'
